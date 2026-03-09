@@ -1,5 +1,10 @@
 import Daysell from "./daycell"
+
+
 const Calendar = () => {
+  const last_day=new Date(2026,3,0).getDate
+  console.log(last_day)
+  const day_of_mart=[1,2,3,4,5,6,7,8,9,10]
   return (
     <div className="calendar">
 
@@ -16,25 +21,10 @@ const Calendar = () => {
 
       <div className="grid">
 
-        <Daysell />
-        <Daysell />
-        <Daysell />
-        <Daysell />
-        <Daysell />
-        <Daysell />
-        <Daysell />
-        <Daysell />
-        <Daysell />
-        <Daysell />
-        <Daysell />
-        <Daysell />
-        <Daysell />
-        <Daysell />
-        <Daysell />
-        <Daysell />
-        <Daysell />
-        <Daysell />
-
+        {day_of_mart.map((day)=>{
+          return <Daysell number_of_day={day}
+          id={crypto?.randomUUID()}/>
+        })}
       </div>
 
     </div>
