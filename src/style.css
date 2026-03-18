@@ -1,299 +1,556 @@
-/* ===== Reset / Base ===== */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+@import url("https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double+Ink:wght@100..900&display=swap");
 
 * {
-  padding: 0;
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
 }
 
+
 :root {
-  --bg: #f4f4f4;
+  --bg: #f7f7f3;
   --surface: #ffffff;
-  --text: #111827;
-  --muted: #6b7280;
-  --border: #e5e7eb;
-  --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-  --radius: 14px;
+  --border: #ebebeb;
+  --text: #4d5260;
+  --muted: #868c98;
+  --blue-text: #6170dc;
+  --dark-cell: #3f434b;
+  --yellow: #fff2c7;
+  --mint: #cdebd9;
+  --blue: #d3def9;
+  --purple: #ddd4ef;
+  --green-result: #19d18d;
+  --yellow-result: #fff33b;
+  --welcome-text: "Bitcount Grid Double Ink";
 }
 
 html,
-body {
-  height: 100%;
+body,
+#root {
+  min-height: 100%;
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background: var(--bg);
+  background: radial-gradient(circle at top left, #ffffff, var(--bg) 42%);
   color: var(--text);
-  line-height: 1.4;
+  font-family: "Trebuchet MS", Arial, sans-serif;
 }
 
-/* ===== App Layout ===== */
+.welcome_text{
+  font-family: var(--welcome-text);
+  color: #6170dc;
+  font-size: 60px;
+  text-align: center;
+  line-height: 1.1;
+  max-width: 1100px;
+  margin: 0 auto;
+  text-wrap: balance;
+}
+.welcome{
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 0 16px;
+}
+
+button,
+input {
+  font: inherit;
+}
+
 .app {
   min-height: 100vh;
+
+  padding: 18px;
+  background-color: #553853;
+}
+
+.tracker_habit_name_btn img{
+  width: 30%;
+  height: 40%;
+  opacity: 0;
+  transition: 0.2s;
+
+  
+}
+
+.tracker_habit_name:hover img{
+  opacity: 1;
+
+}
+
+.tracker_habit_name_btn {
+  justify-content: space-around;
+  width: 30%;
   display: flex;
-  flex-direction: column;
+  
 }
 
-.header {
-  background: #222;
-  color: white;
-  padding: 16px 18px;
-}
-
-.header h1 {
-  font-size: clamp(20px, 2.2vw, 28px);
-  font-weight: 700;
-}
 
 .layout {
-  flex: 1;
-  display: flex;
-  gap: 18px;
-  padding: 16px;
-  width: 100%;
-  max-width: 1200px;
+  max-width: 1540px;
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 0;
+  align-items: start;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(235, 235, 235, 0.95);
+  border-radius: 26px;
+  overflow: hidden;
+  box-shadow: 0 16px 36px rgba(89, 94, 120, 0.08);
 }
 
-/* ===== Sidebar (left) ===== */
 .left {
-  flex: 0 0 clamp(240px, 28vw, 340px);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 16px;
-  box-shadow: var(--shadow);
-  height: fit-content;
+  min-height: 100%;
+  background: linear-gradient(180deg, rgba(250, 250, 248, 0.95), rgba(245, 247, 251, 0.95));
+  border-right: 1px solid var(--border);
+  padding: 24px 18px;
 }
 
 .left h2 {
-  font-size: 18px;
-  margin-bottom: 12px;
+  margin-bottom: 6px;
+  color: var(--blue-text);
+  font-size: 30px;
 }
 
-/* ===== Main (right) ===== */
-.right {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
+.left_text {
+  margin-bottom: 18px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.4;
 }
 
-/* ===== Habit Form ===== */
 .habitForm {
   display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 0;
+}
+
+.habitForm input,
+.formcheck {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: #fbfbfb;
+  padding: 14px 15px;
+  outline: none;
+}
+
+.habitForm input:focus,
+.formcheck:focus {
+  border-color: #cfd7ea;
+}
+
+.habitForm button,
+.search_btn,
+.btn_delete_all {
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+}
+
+.habitForm button,
+.search_btn {
+  background: #232832;
+  color: #fff;
+  padding: 14px 15px;
+}
+
+.search_field {
   margin-bottom: 14px;
 }
 
-.habitForm input {
-  flex: 1 1 180px;
-  min-width: 0;
-  padding: 10px 12px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  outline: none;
-  background: #fff;
+.search_line {
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
-.habitForm input:focus {
-  border-color: #9ca3af;
+.search_btn {
+  flex-shrink: 0;
 }
 
-.habitForm button {
-  flex: 0 0 auto;
-  padding: 10px 12px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background: #111827;
-  color: #fff;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-.habitForm button:hover {
-  filter: brightness(1.05);
-}
-
-.habitForm button:active {
-  transform: translateY(1px);
-}
-
-/* ===== Habit List ===== */
 .habit-list {
   list-style: none;
-  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
+  margin-top: 12px;
 }
 
-/* В проекте li получает класс "habit-list" тоже — поддержим оба варианта */
-.habit-item,
-.habit-list.habit-item {
+.habit-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  padding: 10px 12px;
-  background: #f3f4f6;
+  padding: 12px 14px;
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 16px;
+  background: #faf9f6;
 }
 
-.habit-item p,
-.habit-list.habit-item p {
-  flex: 1;
-  min-width: 0;
+.active {
+  background: #eef4ff;
+}
+
+.habit-item p {
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
-.habit-item button,
-.habit-list.habit-item button {
-  border: 1px solid var(--border);
-  background: #fff;
-  border-radius: 10px;
-  padding: 6px 10px;
+.habit-item button {
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 50%;
+  background: #eceff7;
+  color: #4f5563;
   cursor: pointer;
 }
 
-.habit-item button:hover,
-.habit-list.habit-item button:hover {
-  background: #f9fafb;
+.btn_delete_all {
+  width: 100%;
+  background: #eff3fb;
+  color: #334155;
+  padding: 12px 14px;
 }
 
-/* Active state */
-.active {
-  background: #e0f2fe !important;
-  border-color: #bae6fd !important;
+.no_habits_item {
+  padding-top: 8px;
 }
 
-/* Empty list image */
 .add_habit {
   width: 100%;
-  max-width: 420px;
-  height: auto;
+  max-width: 220px;
   display: block;
-  margin: 6px auto 0;
+  margin: 0 auto;
 }
 
-/* ===== Calendar ===== */
+.right {
+  min-width: 0;
+  padding: 20px 20px 20px 16px;
+}
+
 .calendar {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 16px;
-  box-shadow: var(--shadow);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
 }
 
-.monthHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
+.tracker_scroller {
+  overflow-x: auto;
+  padding-bottom: 8px;
 }
 
-.monthHeader h2 {
-  font-size: clamp(16px, 2vw, 20px);
-  text-align: center;
-  flex: 1;
+.tracker_table {
+  width: max-content;
+  min-width: 100%;
 }
 
-.monthHeader button {
-  width: 38px;
-  height: 38px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  background: #fff;
-  cursor: pointer;
-}
-
-.monthHeader button:hover {
-  background: #f9fafb;
-}
-
-.grid {
-  margin-top: 14px;
+.tracker_head_row,
+.tracker_row {
   display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
-  gap: 10px;
+  grid-template-columns: 260px repeat(31, 52px) 120px;
 }
 
-.dayCell {
-  height: clamp(44px, 6.5vw, 72px);
-  border: 1px solid var(--border);
-  border-radius: 12px;
+.tracker_head_row > :first-child,
+.tracker_row > :first-child {
+  border-left: 1px solid var(--border);
+}
+
+.tracker_head_row > * {
+  border-top: 1px solid var(--border);
+}
+
+.tracker_header,
+.tracker_day,
+.tracker_habit_name,
+.tracker_cell,
+.tracker_achieved {
+  min-height: 54px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #fafafa;
-  font-weight: 600;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: #fff;
 }
 
-/* ===== Stats ===== */
-.stats {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 16px;
-  box-shadow: var(--shadow);
+
+
+.tracker_header {
+  color: var(--blue-text);
+  font-weight: 700;
+  font-size: 15px;
 }
 
-.stats h2 {
+.tracker_habits,
+.tracker_habit_name {
+  justify-content: flex-start;
+  padding-left: 18px;
+  position: sticky;
+  left: 0;
+  z-index: 2;
+}
+
+.tracker_habit_name{
+  
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  width: 100%;
+}
+
+
+
+
+.tracker_day {
+  flex-direction: column;
+  gap: 4px;
+  color: #999fab;
+  font-size: 12px;
+}
+
+.tracker_day strong {
+  color: #5a6172;
+  font-size: 20px;
+}
+
+.tracker_day.today {
+  background: var(--dark-cell);
+}
+
+.tracker_day.today span,
+.tracker_day.today strong {
+  color: #fff;
+}
+
+.tracker_habit_name {
+  white-space: nowrap;
+  font-size: 16px;
+}
+
+.tracker_cell {
+  appearance: none;
+  border: 0;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
   font-size: 18px;
-  margin-bottom: 10px;
+  color: #7b7f88;
+  padding: 0;
+  outline: none;
+  cursor: pointer;
 }
 
-.stats p {
-  color: var(--muted);
-  margin-top: 6px;
+.tracker_cell.is-filled {
+  font-weight: 700;
 }
 
-/* ===== Responsive ===== */
-@media (max-width: 900px) {
-  .layout {
+.tracker_cell:hover {
+  box-shadow: inset 0 0 0 1px #cfd7ea;
+}
+
+.is-yellow {
+  background: var(--yellow);
+}
+
+.is-mint {
+  background: var(--mint);
+}
+
+.is-blue {
+  background: var(--blue);
+}
+
+.is-purple {
+  background: var(--purple);
+}
+
+.tracker_total_header,
+.tracker_achieved {
+  position: sticky;
+  right: 0;
+  z-index: 3;
+  box-shadow: -10px 0 14px rgba(255, 255, 255, 0.96);
+}
+
+.tracker_total_header {
+  font-size: 16px;
+  z-index: 5;
+}
+
+.tracker_achieved {
+  font-size: 18px;
+}
+
+.tracker_achieved.good {
+  background: var(--green-result);
+  color: #04533f;
+  font-weight: 700;
+}
+
+.tracker_achieved.warn {
+  background: var(--yellow-result);
+  color: #676104;
+  font-weight: 700;
+}
+
+.tracker_empty_text {
+  margin-top: 12px;
+  color: #303744;
+  font-size: 16px;
+}
+
+@media (min-width: 1200px) {
+  .app {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
     flex-direction: column;
+    padding: 28px;
+  }
+
+  .layout {
+    width: min(96vw, 1760px);
+    grid-template-columns: 270px 1fr;
   }
 
   .left {
-    flex: 1 1 auto;
-    width: 100%;
+    padding: 30px 22px;
   }
-}
 
-@media (max-width: 520px) {
-  .layout {
-    padding: 12px;
+  .left h2 {
+    font-size: 36px;
+  }
+
+  .left_text {
+    font-size: 17px;
+  }
+
+  .habitForm input {
+    padding: 16px 17px;
+    font-size: 17px;
   }
 
   .habitForm button {
-    flex: 1 1 140px;
+    padding: 16px 17px;
+    font-size: 17px;
   }
 
-  .grid {
-    gap: 8px;
+  .right {
+    padding: 24px 24px 24px 18px;
   }
 
-  .monthHeader button {
-    width: 36px;
-    height: 36px;
+  .tracker_head_row,
+  .tracker_row {
+    grid-template-columns: 290px repeat(31, 58px) 130px;
+  }
+
+  .tracker_header,
+  .tracker_day,
+  .tracker_habit_name,
+  .tracker_cell,
+  .tracker_achieved {
+    min-height: 60px;
+  }
+
+  .tracker_header,
+  .tracker_total_header {
+    font-size: 17px;
+  }
+
+  .tracker_day {
+    font-size: 13px;
+  }
+
+  .tracker_day strong {
+    font-size: 24px;
+  }
+
+  .tracker_habit_name {
+    font-size: 18px;
+  }
+
+  .tracker_cell,
+  .tracker_achieved {
+    font-size: 20px;
   }
 }
 
-.btn_delete_all{
-  padding: 10px 12px;
-    background: #f3f4f6;
-    border: 1px solid var(--border);
-    border-radius: 12px;
+@media (max-width: 1180px) {
+  .welcome_text {
+    font-size: 48px;
+    max-width: 900px;
+  }
+
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .left {
+    order: 2;
+    border-right: none;
+    border-top: 1px solid var(--border);
+  }
+
+  .right {
+    order: 1;
+    padding: 18px;
+  }
+}
+
+@media (max-width: 640px) {
+  .welcome {
+    margin-bottom: 14px;
+    padding: 0 8px;
+  }
+
+  .welcome_text {
+    font-size: 28px;
+    line-height: 1.2;
+    max-width: 320px;
+  }
+
+  .app {
+    padding: 12px;
+  }
+
+  .left,
+  .right {
+    padding: 14px;
+  }
+
+  .layout {
+    border-radius: 20px;
+  }
+
+  .left h2 {
+    font-size: 24px;
+  }
+
+  .search_line {
+    flex-direction: column;
+  }
+
+  .search_btn {
     width: 100%;
-    margin-top: 10px;
+  }
+
+  .tracker_head_row,
+  .tracker_row {
+    grid-template-columns: 210px repeat(31, 44px) 110px;
+  }
+
+  .tracker_header,
+  .tracker_day,
+  .tracker_habit_name,
+  .tracker_cell,
+  .tracker_achieved {
+    min-height: 46px;
+  }
 }

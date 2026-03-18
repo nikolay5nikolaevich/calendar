@@ -1,22 +1,19 @@
-const Add_tast_form=(props)=>{
-    const {
-        reset,
-        setvalue,
-        value1
-    }=props
-    return(
-        <form onSubmit={reset} className="habitForm">
+const Add_tast_form = (props) => {
+  const { reset, setvalue, value1, inputRef } = props;
 
-        <input
-          type="text"
-          placeholder="Habit name"
-          value={value1}
-          onChange={(e)=>setvalue(e.target.value)}
-        />
+  return (
+    <form onSubmit={reset} className="habitForm">
+      <input
+        ref={inputRef}
+        type="text"
+        placeholder="Habit name"
+        value={value1}
+        onChange={(e) => setvalue(e.target.value)}
+      />
 
-        <button type="submit" >Add Habit</button>
+      <button type="submit">Add Habit</button>
+    </form>
+  );
+};
 
-      </form>
-    )
-}
-export default Add_tast_form
+export default Add_tast_form;
