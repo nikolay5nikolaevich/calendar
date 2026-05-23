@@ -1,28 +1,21 @@
-import { useState , useRef} from "react";
-import Add_tast_form from "./Add_task_form";
+import Add_task_form from "./Add_task_form";
 
-const Habit_input = (props) => {
-  const { onAddhabit } = props;
-  const [value, setvalue] = useState("");
-  const inputRef=useRef(null)
-
-  const stopreset = (e) => {
-    e.preventDefault();
-    inputRef.current.focus()
-    onAddhabit(value);
-    setvalue("");
-  };
-
+export default function Habit_input({ onAddhabit, onDeleteall, goal }) {
   return (
-    <div className="left">
-      <h2>Habits</h2>
+    <aside className="left">
+      <div className="left_header">
+        <h2>привычки</h2>
+
+      </div>
       <p className="left_text">
-        Add a habit here. It will appear in the table on the right.
+        Добавь привычку — она появится справа карточкой со своей сеткой месяца.
       </p>
 
-      <Add_tast_form reset={stopreset} value1={value} setvalue={setvalue} inputRef={inputRef} />
-    </div>
-  );
-};
+      <Add_task_form onSubmit={onAddhabit} defaultGoal={goal} />
 
-export default Habit_input;
+      <button className="btn_delete_all" type="button" onClick={onDeleteall}>
+        Очистить всё
+      </button>
+    </aside>
+  );
+}
