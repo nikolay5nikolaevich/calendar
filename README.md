@@ -1,12 +1,174 @@
-# React + Vite
+# habit·grid
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Проект №14**
 
-Currently, two official plugins are available:
+Ко мне обратился Артём из Омска — тренер и совладелец бойцовского клуба Баки.
+Проблема была простой и при этом очень конкретной: люди приходят, занимаются пару недель на энтузиазме,
+потом пропадают. Не потому что им не нравится — а потому что нет системы.
+Нет ничего, что каждый день напоминало бы: ты либо держишь ритм, либо нет.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Артём хотел инструмент, где каждый боец клуба мог бы сам отмечать тренировки,
+видеть свой прогресс за месяц и понимать, насколько он близок к личной цели.
+Не мотивационные цитаты — просто клетки, которые ты либо закрашиваешь, либо нет.
 
-## Expanding the ESLint configuration
+Так появился habit·grid — трекер привычек заточенный под дисциплину,
+а не под геймификацию.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## Что это
+
+Одностраничное React-приложение в редакционной эстетике Editorial Noir.  
+Никакого бэкенда — все данные живут в `localStorage`.
+
+```
+/ ──────── hero · marquee · трекер · тренерский состав
+/progress ─ графики по 12 месяцам
+```
+
+---
+
+## Фичи
+
+- **Habit grid** — сетка дней (Пн–Вс), клик = отметка, анимация ink-pour
+- **Today panel** — одним взглядом видно, что не отмечено сегодня
+- **12-month charts** — Link-bars со stat-карточками, hover-анимация
+- **Per-habit goals** — индивидуальная цель дней в месяц на каждую привычку
+- **Undo toast** — случайно удалил? Кнопка «отменить» держится 5 секунд
+- **Тёмная / светлая тема** — тёмная по умолчанию, toggle в navbar
+- **Кастомный курсор** — лаймовая точка + кольцо, скрывается на тач-экранах
+- **Scroll progress bar** — лаймовая полоска сверху страницы
+- **Grain overlay** — плёночная текстура через SVG-turbulence
+
+---
+
+## Стек
+
+[![Skills](https://skillicons.dev/icons?i=react,vite,js,css)](https://skillicons.dev)
+
+| | |
+|---|---|
+| **UI** | React 19 + чистый JS (без TypeScript) |
+| **Сборка** | Vite 7 |
+| **Роутинг** | react-router-dom v7 |
+| **Стили** | Ванильный CSS (`src/style.css`, ~1000 строк) |
+| **Шрифты** | Fraunces · JetBrains Mono · Inter Tight |
+| **Хранилище** | localStorage (ключи: `habit`, `goal`, `darkMode`) |
+| **Тестов** | нет |
+
+---
+
+## Быстрый старт
+
+```bash
+# 1. Клонировать репозиторий
+git clone https://github.com/nikolay5nikolaevich/calendar.git
+
+# 2. Перейти в папку проекта
+cd calendar
+
+# 3. Установить зависимости
+npm install
+
+# 4. Запустить локально
+npm run dev
+```
+
+После этого открыть в браузере: `http://localhost:5177`
+
+```bash
+# Собрать для продакшна
+npm run build
+```
+
+---
+
+## Структура проекта
+
+```
+src/
+├── App.jsx              # главный файл: все данные, всё управление
+├── constants.js         # цвета привычек и другие константы
+├── style.css            # все стили приложения
+├── components/
+│   ├── HeroSection.jsx  # первый экран с заголовком и кнопкой входа
+│   ├── HabitCards.jsx   # сетка с календарём — здесь отмечаются дни
+│   ├── HabitInput.jsx   # панель добавления новой привычки
+│   ├── TodayPanel.jsx   # блок «что отметить сегодня»
+│   ├── CoachRoster.jsx  # раздел с тренерским составом клуба
+│   ├── Navbar.jsx       # верхнее меню с навигацией и переключателем темы
+│   ├── Cursor.jsx       # кастомный курсор вместо стандартного
+│   ├── Grain.jsx        # эффект плёнки поверх страницы
+│   ├── Reveal.jsx       # анимация появления блоков при прокрутке
+│   ├── ScrollProgress.jsx  # полоска прогресса прокрутки сверху
+│   ├── Marquee.jsx      # бегущая строка с текстом
+│   └── Toast.jsx        # всплывающее уведомление с кнопкой «отменить»
+└── pages/
+    └── ProgressPage.jsx # страница графиков за последние 12 месяцев
+```
+
+---
+
+## Модель данных
+
+```js
+// Объект привычки (localStorage key: "habit")
+{
+  id:           crypto.randomUUID(),
+  name:         "Бокс",
+  color:        "yellow" | "mint" | "blue" | "purple" | "coral" | "orange",
+  goalPerMonth: 20,
+  intent:       "почему это важно",
+  done_days:    ["YYYY-MM-DD"]   // ISO-строки, всегда отсортированы
+}
+```
+
+
+
+---
+
+## Дизайн-система
+
+Палитра Editorial Noir — тёплый чёрный фон, кремовая бумага в светлой теме.  
+Единственный сигнальный цвет — `--lime`.
+
+```css
+--paper:   #0c0a08   /* тёмная */  /  #f1ead8  /* светлая */
+--ink:     #e8e0d0   /* тёмная */  /  #1a1510  /* светлая */
+--lime:    #d9ff00   /* тёмная */  /  #4a6b00  /* светлая */
+--ember:   #ff5a2c
+```
+
+**Правила типографики:**
+- Заголовки → Fraunces italic, `"opsz" 144, "SOFT" 60, "WONK" 1`
+- Метки / цифры → JetBrains Mono, `uppercase`, `letter-spacing: 0.2em`
+- Текст → Inter Tight
+
+---
+
+## Скриншоты
+
+**Главный экран**
+
+![Hero](.agents/shots/01-hero-top.png)
+
+**Трекер привычек**
+
+![Tracker](.agents/shots/02-tracker.png)
+
+**Графики за 12 месяцев**
+
+![Progress](.agents/shots/06-progress.png)
+
+**Тренерский состав**
+
+![Coaches](.agents/shots/07-coaches.png)
+
+**Светлая тема**
+
+![Light](.agents/shots/04-light-hero.png)
+
+
+
+
+

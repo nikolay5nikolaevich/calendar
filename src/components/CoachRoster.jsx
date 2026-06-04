@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import Reveal from "./Reveal";
 
@@ -6,21 +7,21 @@ const COACHES = [
     id: "belyaev",
     name: "Игорь Беляев",
     role: "Бокс · КМС",
-    photo: "/coaches/coach-1.jpg",
+    photo: "./coaches/coach-1.jpg",
     last: "беляев",
   },
   {
     id: "kasyanov",
     name: "Артём Касьянов",
     role: "ММА · BJJ purple",
-    photo: "/coaches/coach-2.jpg",
+    photo: "./coaches/coach-2.jpg",
     last: "касьянов",
   },
   {
     id: "tagirov",
     name: "Руслан Тагиров",
     role: "Муай-тай · клинч",
-    photo: "/coaches/coach-3.jpg",
+    photo: "./coaches/coach-3.jpg",
     last: "тагиров",
   },
 ];

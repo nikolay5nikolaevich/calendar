@@ -34,7 +34,7 @@ export default function ClubIntro() {
 
       <Reveal>
         <div className="club_intro_right">
-          <img src="/gym.png" alt="Зал клуба Баки" className="club_intro_photo" />
+          <img src="./gym.png" alt="Зал клуба Баки" className="club_intro_photo" />
           <span className="club_intro_caption">ЗАЛ · 21:30</span>
         </div>
       </Reveal>
