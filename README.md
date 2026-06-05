@@ -150,23 +150,23 @@ src/
 
 **Главный экран**
 
-![Hero](.agents/shots/01-hero-top.png)
+![Hero](screenshots/hero.png)
 
 **Трекер привычек**
 
-![Tracker](.agents/shots/02-tracker.png)
+![Tracker](screenshots/tracker.png)
 
 **Графики за 12 месяцев**
 
-![Progress](.agents/shots/06-progress.png)
+![Progress](screenshots/progress.png)
 
 **Тренерский состав**
 
-![Coaches](.agents/shots/07-coaches.png)
+![Coaches](screenshots/coaches.png)
 
 **Светлая тема**
 
-![Light](.agents/shots/04-light-hero.png)
+![Light](screenshots/light.png)
 
 
 
